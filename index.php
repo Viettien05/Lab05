@@ -1,20 +1,18 @@
 <?php
 require 'vendor/autoload.php';
 
-use App\Controllers\HomeController;
-use App\Controllers\StudentController;
+use App\Controllers\ProductController;
 
-$page = $_GET['page'] ?? 'home';
+$page = $_GET['page'] ?? 'product-list';
+$controller = new ProductController();
 
 switch ($page) {
-    case 'home':
-        (new HomeController())->index();
-        break;
-
-    case 'students':
-        (new StudentController())->index();
-        break;
-
-    default:
-        echo "404 - Page Not Found";
+    case 'product-list': $controller->index(); break;
+    case 'product-delete': $controller->delete(); break;
+    case 'product-detail': $controller->detail(); break;
+    case 'product-add': $controller->create(); break;
+    case 'product-store': $controller->store(); break;
+    case 'product-edit': $controller->edit(); break;
+    case 'product-update': $controller->update(); break;
+    default: echo "404";
 }
